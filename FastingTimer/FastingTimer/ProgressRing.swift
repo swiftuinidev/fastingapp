@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct ProgressRing: View {
+    @EnvironmentObject var fastingManager :FastingManager
     @State var progress = 0.0
+    
+    let timer=Timer.publish(every: 1, on: .main, in: .common)
+        .autoconnect()
     let colors: [Color] = [.yellow, .red,.blue, .purple]
 
     var body: some View {
@@ -25,10 +29,8 @@ struct ProgressRing: View {
                 .stroke(  AngularGradient(gradient: Gradient(colors: colors), center: .center,startAngle: .degrees(0), endAngle: .degrees(360 + 45)) ,style: StrokeStyle(lineWidth: 15, lineCap: .round, lineJoin: .round))
                 .rotationEffect((Angle(degrees: 270)))
                 .animation(.easeInOut(duration: 1.0),value:progress)
-                .onAppear{
-                    progress=1
-                }
             
+                           
             VStack(spacing:30)
             {
                 //MARK : Elapsed Time
@@ -38,7 +40,7 @@ struct ProgressRing: View {
                     Text("Elapsed Time")
                         .opacity(0.7)
                     
-                    Text("0:00")
+                    Text(fastingManager.startTime,style: .timer)
                         .font(.title)
                         .fontWeight(.bold)
                 }
@@ -48,10 +50,18 @@ struct ProgressRing: View {
                 
                 VStack(spacing:5)
                 {
-                    Text("Remaining Time")
-                        .opacity(0.7)
-                    
-                    Text("0:00")
+                    if  !fastingManager.elapsed{
+                        Text("Remaining Time")
+                            .opacity(0.7)
+                        
+                    }else
+                    {
+                        Text("Extra Time")
+                            .opacity(0.7)
+                        
+                    }
+                 
+                    Text(fastingManager.endTime,style: .timer)
                         .font(.title2)
                         .fontWeight(.bold)
                 }
@@ -59,11 +69,21 @@ struct ProgressRing: View {
         }
         .frame(width: 250, height: 250)
         .padding()
+        
+        .onAppear{
+            progress=1
+        }
+    
+        .onReceive(timer)  { _ in
+            fastingManager.track()
+            
+        }
                         }
                         }
                         
             struct ProgressRing_Previews: PreviewProvider {
     static var previews: some View {
         ProgressRing()
+            .environmentObject(FastingManager())
     }
 }

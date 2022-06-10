@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03A9C7FE2853E9B30069A661 /* FastingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A9C7FD2853E9B30069A661 /* FastingManager.swift */; };
 		03C88820285280A0002793AF /* FastingTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8881F285280A0002793AF /* FastingTimerApp.swift */; };
 		03C88822285280A0002793AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C88821285280A0002793AF /* ContentView.swift */; };
 		03C88824285280A2002793AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03C88823285280A2002793AF /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03A9C7FD2853E9B30069A661 /* FastingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingManager.swift; sourceTree = "<group>"; };
 		03C8881C285280A0002793AF /* FastingTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FastingTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03C8881F285280A0002793AF /* FastingTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingTimerApp.swift; sourceTree = "<group>"; };
 		03C88821285280A0002793AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			children = (
 				03C8881F285280A0002793AF /* FastingTimerApp.swift */,
 				03C8882D2852838E002793AF /* ProgressRing.swift */,
+				03A9C7FD2853E9B30069A661 /* FastingManager.swift */,
 				03C88821285280A0002793AF /* ContentView.swift */,
 				03C88823285280A2002793AF /* Assets.xcassets */,
 				03C88825285280A2002793AF /* Preview Content */,
@@ -142,6 +145,7 @@
 			files = (
 				03C88822285280A0002793AF /* ContentView.swift in Sources */,
 				03C88820285280A0002793AF /* FastingTimerApp.swift in Sources */,
+				03A9C7FE2853E9B30069A661 /* FastingManager.swift in Sources */,
 				03C8882E2852838E002793AF /* ProgressRing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
