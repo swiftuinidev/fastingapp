@@ -25,7 +25,7 @@ struct ProgressRing: View {
             
             // MARK: Colored Ring
             Circle()
-                .trim(from: 0.0, to: min(progress,1.0))
+                .trim(from: 0.0, to: min(fastingManager.progress,1.0))
                 .stroke(  AngularGradient(gradient: Gradient(colors: colors), center: .center,startAngle: .degrees(0), endAngle: .degrees(360 + 45)) ,style: StrokeStyle(lineWidth: 15, lineCap: .round, lineJoin: .round))
                 .rotationEffect((Angle(degrees: 270)))
                 .animation(.easeInOut(duration: 1.0),value:progress)
@@ -33,38 +33,51 @@ struct ProgressRing: View {
                            
             VStack(spacing:30)
             {
-                //MARK : Elapsed Time
-                
-                VStack(spacing:5)
-                {
-                    Text("Elapsed Time")
-                        .opacity(0.7)
-                    
-                    Text(fastingManager.startTime,style: .timer)
-                        .font(.title)
-                        .fontWeight(.bold)
-                }
-                .padding(.top)
-                
-                //MARK :Remiaing Time
-                
-                VStack(spacing:5)
-                {
-                    if  !fastingManager.elapsed{
-                        Text("Remaining Time")
-                            .opacity(0.7)
-                        
-                    }else
+                //MARK : UpComing Fast
+                if fastingManager.fastingState ==  .notStarted{
+                    VStack(spacing:5)
                     {
-                        Text("Extra Time")
+                        Text("Upcoming fast")
                             .opacity(0.7)
                         
+                        Text("\(fastingManager.fastingPlan.fastingPeriod.formatted()) Hours")
+                            .font(.title)
+                            .fontWeight(.bold)
                     }
-                 
-                    Text(fastingManager.endTime,style: .timer)
-                        .font(.title2)
-                        .fontWeight(.bold)
+                }else
+                {
+                    VStack(spacing:5)
+                    {
+                        Text("Elapsed Time")
+                            .opacity(0.7)
+                        
+                        Text(fastingManager.startTime,style: .timer)
+                            .font(.title)
+                            .fontWeight(.bold)
+                    }
+                    .padding(.top)
+                    
+                    //MARK :Remiaing Time
+                    
+                    VStack(spacing:5)
+                    {
+                        if  !fastingManager.elapsed{
+                            Text("Remaining Time")
+                                .opacity(0.7)
+                            
+                        }else
+                        {
+                            Text("Extra Time")
+                                .opacity(0.7)
+                            
+                        }
+                     
+                        Text(fastingManager.endTime,style: .timer)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                    }
                 }
+               
             }
         }
         .frame(width: 250, height: 250)
